@@ -39,8 +39,10 @@ class TeamsController < ApplicationController
   end
 
   def destroy
+    if current_user == assign.team.owner
     @team.destroy
     redirect_to teams_url, notice: I18n.t('views.messages.delete_team')
+    end
   end
 
   def dashboard
