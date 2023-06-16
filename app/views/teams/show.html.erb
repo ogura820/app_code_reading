@@ -42,7 +42,11 @@
                       <td><%= image_tag 'default.jpg', size: '40x40' %></td>
                       <td><%= assign.user.email %></td>
                       <td><%= link_to I18n.t('views.button.delete'), team_assign_path(@team, assign), method: :delete, class: 'btn btn-sm btn-danger' %></td>
-                    </tr>
+                      
+                      <% if current_user.id == assign.team.owner.id %>
+                      <td><%= link_to 'Transfer authority', owner_change_team_path(owner_id: assign.user_id), method: :post, class: 'btn btn-sm btn-success' %></td>
+                    <% end %>
+                                        </tr>
                   <% end %>
                 </tbody>
               </table>
